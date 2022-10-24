@@ -8,5 +8,8 @@ device = 'cpu'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
-res=inference_detector(model, '/home/D/Item/datasheet/aluminum/images/332.jpg')
-model.show_result('/home/D/Item/datasheet/aluminum/images/332.jpg',res,out_file="out_aluminum.jpg")
+res=inference_detector(model, '/home/D/Item/datasheet/aluminum/images/331.jpg')
+model.show_result('/home/D/Item/datasheet/aluminum/images/331.jpg',res,out_file="out_aluminum.jpg")
+
+# 测试
+# python tools/test.py configs/aluminum/ssd300_coco_aliminum.py work_dirs/ssd300_coco_aliminum/latest.pth --eval bbox --eval-options 'iou_thrs=[0.5]' --show-dir resImg/aluminum_ssd
