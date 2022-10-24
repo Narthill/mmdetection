@@ -8,11 +8,11 @@ device = 'cpu'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
-res=inference_detector(model, '/home/D/Item/datasheet/aluminum/images/334.jpg')
-model.show_result('/home/D/Item/datasheet/aluminum/images/334.jpg',res,out_file="out_aluminum.jpg")
+res=inference_detector(model, '/home/D/Item/datasheet/aluminum/images/192.jpg')
+model.show_result('/home/D/Item/datasheet/aluminum/images/192.jpg',res,out_file="out_aluminum.jpg")
 
 
-# from mmdet.apis import init_detector, inference_detector
+# from mmdet.apis import init_detector, inference_detectors
 
 # config_file = 'configs/balloon/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_balloon.py'
 # # 从 model zoo 下载 checkpoint 并放在 `checkpoints/` 文件下
@@ -24,3 +24,10 @@ model.show_result('/home/D/Item/datasheet/aluminum/images/334.jpg',res,out_file=
 # # 推理演示图像
 # res=inference_detector(model, '/home/D/Item/datasheet/balloon_dataset/balloon/val/16335852991_f55de7958d_k.jpg')
 # model.show_result('/home/D/Item/datasheet/balloon_dataset/balloon/val/16335852991_f55de7958d_k.jpg',res,out_file="out.jpg")
+
+# 测试
+# python tools/test.py configs/aluminum/faster_rcnn_r50_fpn_1x_coco_aluminum.py work_dirs/faster_rcnn_r50_fpn_1x_coco_aluminum/latest.pth --eval bbox --eval-options 'iou_thrs=[0.5]'
+
+# OrderedDict([('bbox_mAP', 0.988), ('bbox_mAP_50', -1.0), ('bbox_mAP_75', -1.0), 
+#              ('bbox_mAP_s', 0.955), ('bbox_mAP_m', 0.985), ('bbox_mAP_l', 1.0), 
+#              ('bbox_mAP_copypaste', '0.988 -1.000 -1.000 0.955 0.985 1.000')])
