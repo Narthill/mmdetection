@@ -8,5 +8,5 @@ device = 'cpu'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
-res=inference_detector(model, '/home/D/Item/datasheet/aluminum/images/334.jpg')
-# model.show_result('/home/D/Item/datasheet/aluminum/images/334.jpg',res,out_file="out_aluminum.jpg")
+res=inference_detector(model, '/home/D/Item/datasheet/aluminum/images/332.jpg')
+model.show_result('/home/D/Item/datasheet/aluminum/images/332.jpg',res,out_file="out_aluminum.jpg")
