@@ -23,6 +23,7 @@ data = dict(
         classes=classes,
         ann_file='/home/D/Item/datasheet/ccm_aoi/mirror_surface/valid.json'))
 
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 # 我们可以使用预训练的 Mask R-CNN 来获取更好的性能
 load_from = 'checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'
 
