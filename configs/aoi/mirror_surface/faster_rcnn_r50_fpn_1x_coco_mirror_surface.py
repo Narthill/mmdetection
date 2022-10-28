@@ -1,6 +1,12 @@
 # 这个新的配置文件继承自一个原始配置文件，只需要突出必要的修改部分即可
 _base_ = '../../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
 
+log_config = dict( 
+    interval=10, 
+    hooks=[ 
+        dict(type='TextLoggerHook'), 
+        dict(type='TensorboardLoggerHook') 
+    ]) 
 # 我们需要对头中的类别数量进行修改来匹配数据集的标注
 model = dict(
     roi_head=dict(
