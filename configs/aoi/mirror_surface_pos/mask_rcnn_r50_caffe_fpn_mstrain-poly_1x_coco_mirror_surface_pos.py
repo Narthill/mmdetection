@@ -4,8 +4,8 @@ _base_ = '../../mask_rcnn/mask_rcnn_r50_caffe_fpn_mstrain-poly_1x_coco.py'
 # 我们需要对头中的类别数量进行修改来匹配数据集的标注
 model = dict(
     roi_head=dict(
-        bbox_head=dict(num_classes=4),
-        mask_head=dict(num_classes=4)))
+        bbox_head=dict(num_classes=2),
+        mask_head=dict(num_classes=2)))
 
 # log_config = dict(
 #     interval=50,
@@ -28,22 +28,24 @@ log_config = dict(
         dict(type='TensorboardLoggerHook') 
     ]) 
 
+root_path='/home/D/Item/datasheet/ccm_aoi/'
+
 # 修改数据集相关设置
 dataset_type = 'CocoDataset'
-classes = ('lian_xi','lou_han','sun_huai','yi_wu')
+classes = ('loc','circle')
 data = dict(
     train=dict(
-        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector/labelme_coco/output_train/',
+        img_prefix=root_path+'mirror_surface_pos/output_train/',
         classes=classes,
-        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector/labelme_coco/output_train/train.json'),
+        ann_file=root_path+'mirror_surface_pos/output_train/train.json'),
     val=dict(
-        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector/labelme_coco/output_val/',
+        img_prefix=root_path+'mirror_surface_pos/output_valid/',
         classes=classes,
-        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector/labelme_coco/output_val/valid.json'),
+        ann_file=root_path+'mirror_surface_pos/output_valid/valid.json'),
     test=dict(
-        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector/labelme_coco/output_val/',
+        img_prefix=root_path+'mirror_surface_pos/output_valid/',
         classes=classes,
-        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector/labelme_coco/output_val/valid.json'))
+        ann_file=root_path+'mirror_surface_pos/output_valid/valid.json'))
 
 optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0001)
 
