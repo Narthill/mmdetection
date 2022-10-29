@@ -6,6 +6,13 @@ model = dict(
     roi_head=dict(
         bbox_head=dict(num_classes=4)))
 
+log_config = dict( 
+    interval=10, 
+    hooks=[ 
+        dict(type='TextLoggerHook'), 
+        dict(type='TensorboardLoggerHook') 
+    ]) 
+
 # 修改数据集相关设置
 dataset_type = 'CocoDataset'
 classes = ('lian_xi','lou_han','sun_huai','yi_wu')

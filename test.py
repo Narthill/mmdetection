@@ -40,8 +40,8 @@ device = 'cpu'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
-res=inference_detector(model, '/home/D/Item/datasheet/ccm_aoi/mirror_surface/Image/TSPK2F112901221014914618_15-02-01_fail_N1.jpg')
-model.show_result('/home/D/Item/datasheet/ccm_aoi/mirror_surface/Image/TSPK2F112901221014914618_15-02-01_fail_N1.jpg',res,out_file="out_surface.jpg")
+res=inference_detector(model, '/home/E/data/aoi/2022-10-26/镜面/13-20-47-776_TSPK2F112901221022604476_fail_N1.jpg')
+model.show_result('/home/E/data/aoi/2022-10-26/镜面/13-20-47-776_TSPK2F112901221022604476_fail_N1.jpg',res,out_file="out_surface.jpg")
 
 # 测试
 # python tools/test.py configs/aoi/mirror_surface/faster_rcnn_r50_fpn_1x_coco_mirror_surface.py work_dirs/faster_rcnn_r50_fpn_1x_coco_mirror_surface/latest.pth --eval bbox --eval-options 'iou_thrs=[0.5]' --show-dir resImg/mirror_surface_faster_rcnn
