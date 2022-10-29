@@ -1,12 +1,20 @@
 _base_ = [
-    '../_base_/models/ssd300.py', '../_base_/datasets/coco_detection.py',
-    '../_base_/schedules/schedule_2x.py', '../_base_/default_runtime.py'
+    '../../_base_/models/ssd300.py', '../../_base_/datasets/coco_detection.py',
+    '../../_base_/schedules/schedule_2x.py', '../../_base_/default_runtime.py'
 ]
-
+# ssd因为要修改coco.py所以要重新编译mmdet
 
 # dataset settings
 dataset_type = 'CocoDataset'
 data_root = '/home/D/Item/datasheet/ccm_aoi/mirror_surface/'
+
+log_config = dict( 
+    interval=10, 
+    hooks=[ 
+        dict(type='TextLoggerHook'), 
+        dict(type='TensorboardLoggerHook') 
+    ]) 
+
 model = dict(
     bbox_head=dict(num_classes=3))
 classes = ('huashang','sunshang','zangwu')
@@ -49,6 +57,7 @@ test_pipeline = [
             dict(type='Collect', keys=['img']),
         ])
 ]
+# 可能数据集划分有问题
 data = dict(
     samples_per_gpu=16,
     workers_per_gpu=3,
@@ -59,23 +68,23 @@ data = dict(
         dataset=dict(
             type=dataset_type,
             ann_file=data_root + 'train.json',
-            img_prefix=data_root + 'images/',
+            img_prefix=data_root + 'Image/',
             pipeline=train_pipeline)),
     val=dict(
 
             type=dataset_type,
             ann_file=data_root + 'valid.json',
-            img_prefix=data_root + 'images/',
+            img_prefix=data_root + 'Image/',
             pipeline=test_pipeline),
-    test=dict(        
+    test=dict(
        
             type=dataset_type,
             ann_file=data_root + 'valid.json',
-            img_prefix=data_root + 'images/',
+            img_prefix=data_root + 'Image/',
             pipeline=test_pipeline),
 )
 # optimizer
-optimizer = dict(type='SGD', lr=2e-4, momentum=0.9, weight_decay=5e-4)
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=5e-2)
 optimizer_config = dict(_delete_=True)
 custom_hooks = [
     dict(type='NumClassCheckHook'),
