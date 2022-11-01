@@ -1,5 +1,5 @@
 # 这个新的配置文件继承自一个原始配置文件，只需要突出必要的修改部分即可
-_base_ = '../../faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
+_base_ = '../../faster_rcnn/faster_rcnn_r50_fpn_2x_coco.py'
 
 log_config = dict( 
     interval=10, 
@@ -29,9 +29,9 @@ data = dict(
         classes=classes,
         ann_file='/home/D/Item/datasheet/ccm_aoi/mirror_surface/valid.json'))
 
-# optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0001)
+# optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 # 我们可以使用预训练的 Mask R-CNN 来获取更好的性能
-load_from = 'checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'
+load_from = 'checkpoints/faster_rcnn_r50_fpn_2x_coco_bbox_mAP-0.384_20200504_210434-a5d8aa15.pth'
 
 # 使用方法
 # python tools/test.py configs/aluminum/faster_rcnn_r50_fpn_1x_coco_aluminum.py work_dirs/faster_rcnn_r50_fpn_1x_coco_aluminum/latest.pth --eval bbox --eval-options 'iou_thrs=[0.5]'
