@@ -32,9 +32,11 @@ import os
 #              ('bbox_mAP_s', 0.955), ('bbox_mAP_m', 0.985), ('bbox_mAP_l', 1.0), 
 #              ('bbox_mAP_copypaste', '0.988 -1.000 -1.000 0.955 0.985 1.000')])
 
+# config_file = 'configs/aoi/mirror_surface/faster_rcnn_r50_fpn_2x_coco_mirror_surface.py'
 config_file = 'configs/aoi/mirror_surface/retinanet_r50_fpn_30epoch_coco_mirror_surface.py'
 # 从 model zoo 下载 checkpoint 并放在 `checkpoints/` 文件下
 # 网址为: http://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
+# checkpoint_file = 'work_dirs/faster_rcnn_r50_fpn_2x_coco_mirror_surface/latest.pth'
 checkpoint_file = 'work_dirs/retinanet_r50_fpn_30epoch_coco_mirror_surface/latest.pth'
 device = 'cuda'
 # 初始化检测器
@@ -44,7 +46,7 @@ test_dir=r'/home/E/data/aoi/2022-10-26/NG/镜面/img/'
 test_filelist=os.listdir(test_dir)
 for item in test_filelist:
     res=inference_detector(model, test_dir+item)
-    model.show_result(test_dir+item,res,out_file="resImg/test_res_retinanet_30/"+item)
+    model.show_result(test_dir+item,res,out_file="resImg/test_res_retinanet_2x_30_1123/"+item)
 
 
 # 测试
