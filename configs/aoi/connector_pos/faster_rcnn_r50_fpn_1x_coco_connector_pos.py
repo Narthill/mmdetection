@@ -17,17 +17,17 @@ dataset_type = 'CocoDataset'
 classes = ('connector',)
 data = dict(
     train=dict(
-        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector_unet/output_train_coco/',
+        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector_pos/output_train_coco/',
         classes=classes,
-        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector_unet/output_train_coco/annotations.json'),
+        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector_pos/output_train_coco/annotations.json'),
     val=dict(
-        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector_unet/output_valid_coco/',
+        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector_pos/output_valid_coco/',
         classes=classes,
-        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector_unet/output_valid_coco/annotations.json'),
+        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector_pos/output_valid_coco/annotations.json'),
     test=dict(
-        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector_unet/output_valid_coco/',
+        img_prefix='/home/D/Item/datasheet/ccm_aoi/Connector_pos/output_valid_coco/',
         classes=classes,
-        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector_unet/output_valid_coco/annotations.json'))
+        ann_file='/home/D/Item/datasheet/ccm_aoi/Connector_pos/output_valid_coco/annotations.json'))
 
 # optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0001)
 # 我们可以使用预训练的 Mask R-CNN 来获取更好的性能
