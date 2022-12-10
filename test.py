@@ -1,5 +1,6 @@
 from mmdet.apis import init_detector, inference_detector
 import os
+import time
 
 # config_file = 'configs/aoi/mirror_surface/faster_rcnn_r50_fpn_2x_coco_mirror_surface.py'
 config_file = 'configs/aoi/mirror_surface_pos/ssd300_coco_mirror_surface_pos.py'
@@ -7,15 +8,17 @@ config_file = 'configs/aoi/mirror_surface_pos/ssd300_coco_mirror_surface_pos.py'
 # 网址为: http://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
 # checkpoint_file = 'work_dirs/faster_rcnn_r50_fpn_2x_coco_mirror_surface/latest.pth'
 checkpoint_file = 'work_dirs/ssd300_coco_mirror_surface_pos/latest.pth'
-device = 'cuda'
+device = 'cpu'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
-test_dir=r'/home/E/data/aoi/2022-10-26/NG/镜面/test/'
+test_dir=r'/home/E/data/aoi/镜面ng/10-26/test/'
 test_filelist=os.listdir(test_dir)
 for item in test_filelist:
+    time_start=time.time()
     res=inference_detector(model, test_dir+item)
-    print(res)
+    time_then=time.time()
+    print('inference cost',time_then-time_start,'s')
     model.show_result(test_dir+item,res,out_file="resImg/ssd300_mf_pos_test/"+item)
 
 
