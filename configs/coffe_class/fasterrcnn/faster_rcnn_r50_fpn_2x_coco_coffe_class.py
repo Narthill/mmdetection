@@ -10,11 +10,26 @@ log_config = dict(
 # 我们需要对头中的类别数量进行修改来匹配数据集的标注
 model = dict(
     roi_head=dict(
-        bbox_head=dict(num_classes=15)))
+        bbox_head=dict(num_classes=16)))
 
 # 修改数据集相关设置
 dataset_type = 'CocoDataset'
-classes = ('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15')
+classes = ('5000080712',
+           '5000082386',
+           '5000085346',
+           '5000085589',
+           '5000086313',
+           '5000086356',
+           '5000086365',
+           '5000086458',
+           '5000197766',
+           '5000340966',
+           '5000351940',
+           '5000358406',
+           '5000360012',
+           '9221080',
+           '9221191',
+           '9221406')
 data = dict(
     train=dict(
         img_prefix='/home/D/Item/datasheet/coffe_class/Image/',
