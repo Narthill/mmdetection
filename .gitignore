@@ -124,3 +124,6 @@ work_dirs/
 *.sh~
 
 *.jpg
+*.bmp
+*.zip
+*.7z
