@@ -123,5 +123,7 @@ work_dirs/
 *.py~
 *.sh~
 
-resImg/*
 *.jpg
+*.bmp
+*.zip
+*.7z
