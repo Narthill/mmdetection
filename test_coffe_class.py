@@ -60,7 +60,7 @@ config_file = 'configs/coffe_class/retinanet/retinanet_r50_fpn_2x_coco_coffe_cla
 # 从 model zoo 下载 checkpoint 并放在 `checkpoints/` 文件下
 # 网址为: http://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth
 checkpoint_file = 'work_dirs/retinanet_r50_fpn_2x_coco_coffe_class/latest.pth'
-device = 'cpu'
+device = 'cuda'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
@@ -69,9 +69,9 @@ test_dir2=r'/home/D/Item/datasheet/coffe_class/test/lighting 50lux'
 test_dir3=r'/home/D/Item/datasheet/coffe_class/test/lighting 700lux'
 test_dir4=r'/home/D/Item/datasheet/coffe_class/test/lighting 2000lux'
 test_dir5=r'/home/D/Item/datasheet/coffe_class/test/SKU recongnition'
-
-# test_dir_list=[test_dir1,test_dir2,test_dir3,test_dir4,test_dir5]
-test_dir_list=[test_dir1]
+test_dir5_sp=r'/home/D/Item/datasheet/coffe_class/test/sp'
+test_dir_list=[test_dir1,test_dir2,test_dir3,test_dir4,test_dir5]
+# test_dir_list=[test_dir5_sp]
 classes = ('5000080712',
            '5000082386',
            '5000085346',
@@ -113,20 +113,23 @@ for test_dir in test_dir_list:
         res=inference_detector(model, test_dir+"/"+item)
         time_then=time.time()
         print('show cost',time_then-time_start,'s')
-        # model.show_result(test_dir+"/"+item,res,score_thr=0.8,text_color=(0,255,0),out_file=test_dir+"_then/"+item)
+        model.show_result(test_dir+"/"+item,res,score_thr=0.6,text_color=(0,255,0),out_file=test_dir+"_then/"+item)
 
 
-        flag = 0
-        for findit in res:
-            flag = flag+1
+        # flag = 0
+        # for findit in res:
+        #     flag = flag+1
             
-            find_bbox=np.array([])
-            if (len(findit) > 0):
-                # find_bbox.append(findit)
-                if (findit[0][4] > 0.6):
-                    src=cv2.imread(test_dir+"/"+item)
-                    dst=cv2.putText(src, classes[flag-1], org, font,fontScale, color, thickness, cv2.LINE_AA)
-                    cv2.imwrite(test_dir+"_then/"+item,dst)
+        #     find_bbox=np.array([])
+        #     if (len(findit) > 0):
+        #         # find_bbox.append(findit)
+        #         # print(findit)
+        #         if (findit[0][4] > 0.6):
+        #             src=cv2.imread(test_dir+"/"+item)
+        #             dst=cv2.putText(src, classes[flag-1], org, font,fontScale, color, thickness, cv2.LINE_AA)
+        #             cv2.imwrite(test_dir+"_then/"+item,dst)
+        #         # print( classes[flag-1])
+        #     # print("________________________")
 
 
     # print('inference cost',time_then-time_start,'s')
