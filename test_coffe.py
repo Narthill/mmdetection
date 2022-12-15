@@ -15,18 +15,18 @@ device = 'cpu'
 # 初始化检测器
 model = init_detector(config_file, checkpoint_file, device=device)
 # 推理演示图像
-test_dir=r'/home/D/Item/datasheet/simo/'
+test_dir=r'/home/D/Item/datasheet/coffe/Image/'
 test_filelist=os.listdir(test_dir)
 time_start=time.time()
 for item in test_filelist:
-    # time_start=time.time()
+    time_start=time.time()
     res=inference_detector(model, test_dir+item)
 #     model.show_result(test_dir+item,res,out_file="resImg/ssd300_coffe_bacode_simo_test_roi/"+item)
-# time_then=time.time()
-# print('inference cost',time_then-time_start,'s')
+    time_then=time.time()
+    print('inference cost',time_then-time_start,'s')
     src=cv2.imread(test_dir+item)
     barcode_img=src[int(res[0][0][1]-10):int(res[0][0][3]+10),int(res[0][0][0]-10):int(res[0][0][2]+10)]
-    cv2.imwrite("resImg/ssd300_coffe_bacode_simo_test_roi/"+item,barcode_img)
+    cv2.imwrite("resImg/ssd300_coffe_bacode_test_roi/"+item,barcode_img)
     # model.show_result(test_dir+item,res,score_thr=0.5,out_file="resImg/ssd300_coffe_bacode_simo_test_roi/"+item)
 
 
