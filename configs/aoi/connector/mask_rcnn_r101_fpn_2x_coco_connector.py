@@ -52,7 +52,7 @@ data = dict(
 # 二、momentum是梯度下降法中一种常用的加速技术。
 # 链接：https://www.zhihu.com/question/24529483/answer/114711446
 
-optimizer = dict(type='SGD', lr=0.002, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 
 # 我们可以使用预训练的 Mask R-CNN 来获取更好的性能
 load_from = 'work_dirs/mask_rcnn_r101_fpn_2x_coco_connector/latest.pth'
