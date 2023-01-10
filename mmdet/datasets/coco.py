@@ -22,9 +22,9 @@ from .custom import CustomDataset
 @DATASETS.register_module()
 class CocoDataset(CustomDataset):
 
-    CLASSES = ('finger',)
+    CLASSES = ('finger','pin',)
 
-    PALETTE = [(220, 20, 60), ]
+    PALETTE = [(220, 20, 60), (119, 11, 32),]
 
     def load_annotations(self, ann_file):
         """Load annotation from COCO style annotation file.

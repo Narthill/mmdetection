@@ -1,7 +1,12 @@
 _base_ = ['../../_base_/schedules/schedule_1x.py', '../../_base_/default_runtime.py']
 
 img_scale = (640, 640)  # height, width
-
+log_config = dict( 
+    interval=1, 
+    hooks=[ 
+        dict(type='TextLoggerHook'), 
+        dict(type='TensorboardLoggerHook') 
+    ]) 
 # model settings
 model = dict(
     type='YOLOX',
@@ -22,7 +27,7 @@ model = dict(
     test_cfg=dict(score_thr=0.01, nms=dict(type='nms', iou_threshold=0.65)))
 
 # dataset settings
-data_root = '/home/E/data/aoi/Connector/output_train_coco_1/'
+data_root = '/home/E/data/aoi/Connector/connector_detection_ds/output_train_coco/'
 dataset_type = 'CocoDataset'
 
 train_pipeline = [
@@ -105,7 +110,7 @@ data = dict(
 # default 8 gpu
 optimizer = dict(
     type='SGD',
-    lr=0.01,
+    lr=0.005,
     momentum=0.9,
     weight_decay=5e-4,
     nesterov=True,
@@ -113,7 +118,7 @@ optimizer = dict(
 optimizer_config = dict(grad_clip=None)
 
 max_epochs = 300
-num_last_epochs = 15
+num_last_epochs = 10
 resume_from = None
 interval = 10
 
@@ -157,9 +162,10 @@ evaluation = dict(
     interval=interval,
     dynamic_intervals=[(max_epochs - num_last_epochs, 1)],
     metric='bbox')
-log_config = dict(interval=50)
+# log_config = dict(interval=50)
 
 # NOTE: `auto_scale_lr` is for automatically scaling LR,
 # USER SHOULD NOT CHANGE ITS VALUES.
 # base_batch_size = (8 GPUs) x (8 samples per GPU)
-auto_scale_lr = dict(base_batch_size=2)
+auto_scale_lr = dict(base_batch_size=8)
+load_from = 'work_dirs/yolox_s_8x8_300e_coco_connector/best_bbox_mAP_epoch_70_1.pth'
