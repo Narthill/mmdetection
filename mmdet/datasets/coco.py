@@ -22,7 +22,7 @@ from .custom import CustomDataset
 @DATASETS.register_module()
 class CocoDataset(CustomDataset):
 
-    CLASSES = ('finger','pin',)
+    CLASSES = ('finger','pin_1',)
 
     PALETTE = [(220, 20, 60), (119, 11, 32),]
 
